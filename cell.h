@@ -10,15 +10,15 @@ struct Cell : Graph_lib::Button
 {
 
   static constexpr int size = 100;
-
+  bool is_deleted = false;
 
   Cell (Point xy, Graph_lib::Callback cb);
 
   void attach (Graph_lib::Window& win) override;
 
-  void activate ();
+  void activate (Window &win, Point xy, std::string Picture_name);
 
-  void deactivate ();
+  void deactivate (Window &win, Point xy);
 
   Point center() const {return Point{loc.x + width / 2, loc.y + height / 2};}
 };
