@@ -18,21 +18,21 @@ struct Gameboard : Graph_lib::Widget
 
   using Position = std::pair<char, int>;
 
-  void show () override;
+  void show () override; // отрисовка поля
+ 
+  //bool check_pair_cells(); //  проверка двух селлов на совпадение
 
-  bool check_pair_cells();
+  void attach (Graph_lib::Window& win) override; // привязка всех селлов к окну
 
-  void attach (Graph_lib::Window& win) override;
+  //Cell& at (char c, int i);
 
-  Cell& at (char c, int i);
+  //Position where (Cell& c) const; 
 
-  Position where (Cell& c) const;
+  bool has_selected () const {return selected != nullptr;} 
 
-  bool has_selected () const {return selected != nullptr;}
+  Cell& get_selected (); // так же как и в шашках
 
-  Cell& get_selected ();
-
-  void select (Cell& c); // toggle selection
+  void select (Cell& c); // логика открытия двух фишек
 
 private:
   Graph_lib::Vector_ref<Cell> cells;
