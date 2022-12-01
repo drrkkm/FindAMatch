@@ -40,6 +40,8 @@ public:
   virtual void show ()  { pw->show(); }
   virtual void attach (Window&) = 0;
 
+  Window& window ()  { return *own; }
+
   Point loc;
   int width;
   int height;

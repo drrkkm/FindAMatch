@@ -12,7 +12,7 @@ struct Gameboard : Graph_lib::Widget
 {
   static constexpr int N = 4;
   static constexpr int count_cells = 32;
-  static constexpr int size = 10;
+  static constexpr int size = 100;
 
   Gameboard (Point xy, Graph_lib::Callback cb_clicked);
 
@@ -24,15 +24,11 @@ struct Gameboard : Graph_lib::Widget
 
   void attach (Graph_lib::Window& win) override; // привязка всех селлов к окну
 
-  //Cell& at (char c, int i);
-
-  //Position where (Cell& c) const; 
-
   bool has_selected () const {return selected != nullptr;} 
 
   Cell& get_selected (); // так же как и в шашках
 
-  void select (Cell& c); // логика открытия двух фишек
+  void select (Window &win, Cell& c); // логика открытия двух фишек
 
 private:
   Graph_lib::Vector_ref<Cell> cells;

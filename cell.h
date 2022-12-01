@@ -1,15 +1,17 @@
 #ifndef CELL_H
 #define CELL_H 1
 
-#include <Graph_lib/Simple_window.h>
+#include "Graph_lib/Simple_window.h"
 
 
+using namespace Graph_lib;
 using Graph_lib::Point;
 
 struct Cell : Graph_lib::Button
 {
 
   static constexpr int size = 100;
+  int type;
   bool is_deleted = false;
 
   Cell (Point xy, Graph_lib::Callback cb);
