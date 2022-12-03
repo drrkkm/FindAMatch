@@ -10,29 +10,34 @@ using Graph_lib::Address;
 
 struct Gameboard : Graph_lib::Widget
 {
-  static constexpr int N = 4;
-  static constexpr int count_cells = 32;
-  static constexpr int size = 100;
+    static constexpr int N = 4;
+    static constexpr int count_cells = 32;
+    static constexpr int size = 800;
 
-  Gameboard (Point xy, Graph_lib::Callback cb_clicked);
+    Gameboard (Point xy, Graph_lib::Callback cb_clicked);
 
-  using Position = std::pair<char, int>;
+    using Position = std::pair<char, int>;
 
-  void show () override; // отрисовка поля
- 
-  //bool check_pair_cells(); //  проверка двух селлов на совпадение
+    void show (Graph_lib::Window& win);
 
-  void attach (Graph_lib::Window& win) override; // привязка всех селлов к окну
+    bool check_pair_cells();
 
-  bool has_selected () const {return selected != nullptr;} 
+    void attach (Graph_lib::Window& win) override;
 
-  Cell& get_selected (); // так же как и в шашках
+    Cell& at (char c, int i);
 
-  void select (Window &win, Cell& c); // логика открытия двух фишек
+    Position where (Cell& c) const;
+
+    bool has_selected () const {return selected != nullptr;}
+
+    Cell& get_selected ();
+
+    void select (Cell& c); // toggle selection
+    Graph_lib::Vector_ref<Cell> give_cells();
 
 private:
-  Graph_lib::Vector_ref<Cell> cells;
-
-  Cell* selected{ nullptr };               // activated cell
+    Graph_lib::Vector_ref<Cell> cells;
+    Cell* selected{ nullptr };               // activated cell
+    void select(Graph_lib::Window &win, Cell &c);
 };
 #endif // #ifndef BOARD_H
