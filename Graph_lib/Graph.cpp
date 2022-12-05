@@ -141,7 +141,7 @@ void Open_polyline::draw_lines () const
   {
     fl_color (fill_color().as_int());
     fl_begin_complex_polygon();
-    for(int i = 0; i < number_of_points(); ++i)
+    for (int i = 0; i < number_of_points(); ++i)
     {
       fl_vertex (point(i).x, point(i).y);
     }

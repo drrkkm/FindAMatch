@@ -1,21 +1,23 @@
 #include "cell.h"
-#include "Regular_hexagon.h"
+#include "Graph_lib/Regular_hexagon.h"
 #include <string.h>
 #include "cell.h"
-#include "Graph_lib/Simple_window.h"
 #include <string.h>
 #include <stdexcept>
 
 using namespace Graph_lib;
 
-Cell::Cell (Point xy, Callback cb) : Button{ xy, size, size, "", cb }
+Cell::Cell(Point xy, Graph_lib::Callback cb) : Button{ xy, size, size, "", cb } , hex{new Regular_hexagon{xy, size/2}}
 {
-
+    //type = 1;
+    hex->set_fill_color(Color::dark_magenta);
 }
 
 void Cell::attach (Graph_lib::Window& win)
 {
     Button::attach (win);
+    reset_color();
+    win.attach (*hex);
 }
 
 
@@ -34,3 +36,9 @@ void Cell::deactivate (Graph_lib::Window &win, Point xy)
     tile.set_color(224);
     win.attach(tile);
 };
+
+void Cell::reset_color ()
+{
+  if (!pw) error ("Cell is not attached to a window");
+    pw->color (Color::black);
+}

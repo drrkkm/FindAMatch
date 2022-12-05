@@ -10,7 +10,7 @@ using namespace Graph_lib;
 void Button::attach (Window& win)
 {
   pw = new Fl_Button{ loc.x, loc.y, width, height, label.c_str() };
-  pw->callback (reinterpret_cast<Fl_Callback*>(do_it), &win); // pass the window
+  pw->callback (reinterpret_cast<Fl_Callback*>(do_it), this);  // pass this widget
   own = &win;
 }
 

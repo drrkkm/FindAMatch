@@ -2,8 +2,9 @@
 #define CELL_H 1
 
 #include "Graph_lib/Simple_window.h"
-#include "Point.h"
-#include "GUI.h"
+#include "Graph_lib/Point.h"
+#include "Graph_lib/GUI.h"
+#include "Graph_lib/Regular_hexagon.h"
 #include <string>
 
 
@@ -12,7 +13,7 @@ using Graph_lib::Point;
 struct Cell : Graph_lib::Button
 {
 
-    static constexpr int size = 70;
+    static constexpr int size = 40;
     int type;
     bool is_deleted = false;
 
@@ -25,6 +26,12 @@ struct Cell : Graph_lib::Button
     void activate(Graph_lib::Window &win, Point xy, std::string Picture_name);
 
     void deactivate(Graph_lib::Window &win, Point xy);
+    
+    void reset_color ();
+
+private:
+    Graph_lib::Regular_hexagon* hex {nullptr};
+
 };
 
 #endif // #ifndef CELL_H

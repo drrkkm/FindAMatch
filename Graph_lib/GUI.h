@@ -7,6 +7,7 @@
 
 #include "Window.h"
 #include "Graph.h"
+#include <iostream>
 
 
 namespace Graph_lib {
@@ -64,7 +65,9 @@ struct Button : Widget
 {
   Button (Point xy, int w, int h, const std::string& label, Callback cb)
     : Widget{ xy, w, h, label, cb }
-  { }
+  {
+    std::cout<<w<<" " << h << std::endl;
+   }
 
   void attach (Window&);
 };

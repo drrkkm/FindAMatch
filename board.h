@@ -19,24 +19,19 @@ struct Gameboard : Graph_lib::Widget
     using Position = std::pair<char, int>;
 
     void show (Graph_lib::Window& win);
+    void draw_pole(Graph_lib::Window& win);
 
     bool check_pair_cells();
 
     void attach (Graph_lib::Window& win) override;
-
-    Cell& at (char c, int i);
-
-    Position where (Cell& c) const;
-
     bool has_selected () const {return selected != nullptr;}
 
+    Graph_lib::Vector_ref<Cell> cells;
+    //Graph_lib::Vector_ref<Cell> give_cells();
     Cell& get_selected ();
 
-    void select (Cell& c); // toggle selection
-    Graph_lib::Vector_ref<Cell> give_cells();
-
 private:
-    Graph_lib::Vector_ref<Cell> cells;
+    
     Cell* selected{ nullptr };               // activated cell
     void select(Graph_lib::Window &win, Cell &c);
 };

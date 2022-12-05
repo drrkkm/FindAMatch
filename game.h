@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
-#include "Graph_lib/board.h"
-#include "Graph_lib/cell.h"
+#include "board.h"
+#include <iostream>
 
 using Graph_lib::Point;
 using Graph_lib::Address;
@@ -9,7 +9,7 @@ using Graph_lib::Address;
 struct Game: Graph_lib::Window
 {
     Game (Point xy);
-
+    
 private:
     Gameboard board;
 

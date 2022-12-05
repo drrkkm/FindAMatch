@@ -15,7 +15,9 @@ class Widget;
 
 class Window : public Fl_Window
 {
-public: 
+public:
+  using Fl_Window::resize;
+
   Window (int w, int h, const std::string& title);  // let the system pick the location
   Window (Point xy, int w, int h, const std::string& title);  // top left corner in xy
   virtual ~Window ()  { }
