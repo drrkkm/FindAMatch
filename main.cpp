@@ -1,7 +1,7 @@
 #include <iostream>
 #include <exception>
 #include "game.h"
-#include "Graph_lib/Graph.h"
+#include <Graph_lib/Graph.h>
 using namespace Graph_lib;
 
 

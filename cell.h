@@ -1,10 +1,8 @@
 #ifndef CELL_H
 #define CELL_H 1
 
-#include "Graph_lib/Simple_window.h"
-#include "Graph_lib/Point.h"
-#include "Graph_lib/GUI.h"
-#include "Graph_lib/Regular_hexagon.h"
+#include <Graph_lib/GUI.h>
+#include <Graph_lib/Regular_hexagon.h>
 #include <string>
 
 
@@ -13,7 +11,7 @@ using Graph_lib::Point;
 struct Cell : Graph_lib::Button
 {
 
-    static constexpr int size = 40;
+    static constexpr int size = 70;
     int type;
     bool is_deleted = false;
 
@@ -31,7 +29,6 @@ struct Cell : Graph_lib::Button
 
 private:
     Graph_lib::Regular_hexagon* hex {nullptr};
-
 };
 
 #endif // #ifndef CELL_H

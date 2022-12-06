@@ -56,7 +56,7 @@ try
     for (int i = 0; i < 32; i++){
         win.attach(a[i]);
     }
-    win.attach(move_counter);
+    
     win.wait_for_button();
 }
 catch (std::exception& e)

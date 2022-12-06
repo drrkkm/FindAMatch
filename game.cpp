@@ -6,13 +6,13 @@
 using namespace Graph_lib;
 
 Game::Game(Point xy)
-        : Window{Point(0, 0), 200, 800, "Find a pair cyberpunk"}, board{Point{0, 0}, cb_clicked} {
-    size_range(Gameboard::size, Gameboard::size, Gameboard::size, Gameboard::size);
+        : Window{Point(0, 0), 840, 639, "Find a pair cyberpunk"}, board{Point{0, 0}, cb_clicked} {
+    size_range(Gameboard::lenghth, Gameboard::width, Gameboard::lenghth, Gameboard::width);
     board.attach(*this);
 }
 void Game::clicked(Cell& c)
-{   
-    //std::cerr<<"ccc";
+{   /*
+    std::cerr<<"ccc";
     if (board.has_selected()) {
         Cell &selected_cell = board.get_selected();
         if (board.get_selected().type != c.type) {
@@ -25,5 +25,7 @@ void Game::clicked(Cell& c)
         // something
         }
     }
+    Fl::redraw();
+    */
    Fl::redraw();
 }

@@ -12,7 +12,8 @@ struct Gameboard : Graph_lib::Widget
 {
     static constexpr int N = 4;
     static constexpr int count_cells = 32;
-    static constexpr int size = 800;
+    static constexpr int lenghth = 840;
+    static constexpr int width = 639;
 
     Gameboard (Point xy, Graph_lib::Callback cb_clicked);
 
