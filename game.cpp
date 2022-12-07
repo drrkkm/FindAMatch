@@ -1,8 +1,5 @@
 #include "game.h"
-#include "board.h"
-#include "Graph_lib/Regular_hexagon.h"
-#include "cell.h"
-#include <iostream>
+
 using namespace Graph_lib;
 
 Game::Game(Point xy)
@@ -10,22 +7,30 @@ Game::Game(Point xy)
     size_range(Gameboard::lenghth, Gameboard::width, Gameboard::lenghth, Gameboard::width);
     board.attach(*this);
 }
+//void Game::clicked(Cell& c)
+//{
+//    std::cerr<<"ccc";
+//    if (board.has_selected()) {
+//        Cell &selected_cell = board.get_selected();
+//        if (board.get_selected().type != c.type) {
+//            std::cerr<<"ccc1";
+//            selected_cell.deactivate(*this, selected_cell.center());
+//            c.deactivate(*this, c.center());
+//        }
+//        if (board.get_selected().type == c.type) {
+//            c.is_deleted = false;
+//            selected_cell.is_deleted = false;
+//        // something
+//        }
+//    }
+//    Fl::redraw();
+
+//}
+
+
 void Game::clicked(Cell& c)
-{   /*
-    std::cerr<<"ccc";
-    if (board.has_selected()) {
-        Cell &selected_cell = board.get_selected();
-        if (board.get_selected().type != c.type) {
-            selected_cell.deactivate(*this, selected_cell.center());
-            c.deactivate(*this, c.center());
-        }
-        if (board.get_selected().type == c.type) {
-            c.is_deleted = false;
-            selected_cell.is_deleted = false;
-        // something
-        }
-    }
+{
+    std::cerr<<"ccc ";
+    c.activate(*this);
     Fl::redraw();
-    */
-   Fl::redraw();
 }

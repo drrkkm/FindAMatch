@@ -2,7 +2,10 @@
 #define BOARD_H
 
 #include "cell.h"
-
+#include <Graph_lib/Regular_hexagon.h>
+#include <iostream>
+#include <random>
+#include "pictures.h"
 
 using Graph_lib::Point;
 using Graph_lib::Address;
@@ -26,14 +29,15 @@ struct Gameboard : Graph_lib::Widget
 
     void attach (Graph_lib::Window& win) override;
     bool has_selected () const {return selected != nullptr;}
-
+    std::vector<int> r_gen_int_n();
     Graph_lib::Vector_ref<Cell> cells;
     //Graph_lib::Vector_ref<Cell> give_cells();
     Cell& get_selected ();
 
 private:
-    
+
     Cell* selected{ nullptr };               // activated cell
     void select(Graph_lib::Window &win, Cell &c);
 };
+
 #endif // #ifndef BOARD_H

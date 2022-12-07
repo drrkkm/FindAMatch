@@ -1,11 +1,11 @@
-TARGET = main
+TARGET = checkers
 
-LIB_DIR = .
+LIB_DIR = ../../../lib
 
 SOURCES = $(wildcard ${LIB_DIR}/Graph_lib/*.cpp) \
           board.cpp \
           cell.cpp \
-          game.cpp \
+          checkers.cpp \
           main.cpp
 
 OBJECTS = $(patsubst %.cpp,%.o,$(SOURCES))

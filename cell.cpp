@@ -1,19 +1,18 @@
 #include "cell.h"
-#include <Graph_lib/Regular_hexagon.h>
-#include <string.h>
-#include "cell.h"
-#include <string.h>
-#include <stdexcept>
-#include "utils.h"
-#include <cmath>
+
 
 using namespace Graph_lib;
 
-Cell::Cell(Point xy, Graph_lib::Callback cb)
-    : Button{ Point{xy.x - 38, xy.y - 36}, size + 6, size + 6, "", cb }
+
+
+
+
+Cell::Cell(Point xy, Graph_lib::Callback cb, int t)
+    : Button{ Point{xy.x - 38, xy.y - 36}, size + 6, size + 6, "", cb}, type{t}
     , hex{new Regular_hexagon{xy, int(size/ 2* sqrt(3))}}
 {
-    //type = 1;
+    picture p = picture();
+    image = p.pictures1[type];
     hex->set_fill_color(35);
     hex->set_color(224);
 }
@@ -28,11 +27,24 @@ void Cell::attach (Graph_lib::Window& win)
 }
 
 
-void Cell::activate (Graph_lib::Window &win, Point xy, std::string Picture_name)
+//void Cell::activate (Graph_lib::Window &win, Point xy, std::string Picture_name)
+//{
+//    if (is_deleted) throw std::runtime_error("Cell was delete");
+//    Image move_counter {xy, Picture_name};
+//    win.attach(move_counter);
+//}
+
+void Cell::activate (Graph_lib::Window &win)
 {
     if (is_deleted) throw std::runtime_error("Cell was delete");
-    Image move_counter {xy, Picture_name};
-    win.attach(move_counter);
+    try{
+        auto *i = new Image(Point{center().x - 38, center().y - 38}, image, Suffix::png);
+
+        win.attach(*i);
+    }
+    catch (std::exception& e){
+        cerr << e.what();
+    }
 }
 
 void Cell::deactivate (Graph_lib::Window &win, Point xy)

@@ -56,7 +56,7 @@ try
     for (int i = 0; i < 32; i++){
         win.attach(a[i]);
     }
-    
+
     win.wait_for_button();
 }
 catch (std::exception& e)
@@ -68,5 +68,3 @@ catch (...) {
     std::cerr << "Oops, something went wrong..." << std::endl;
     return 2;
 }
-
-// g++ -o main -std=c++14 -pedantic $(fltk-config --cxxflags) main.cpp ./Graph_lib/*.cpp -lfltk_images -lfltk_png -lfltk_jpeg -lfltk_z $(fltk-config --use-images --ldflags)

@@ -13,9 +13,12 @@ Project {
         files: [
             "game.cpp",
             "game.h",
+            "pictures.h",
+            "pictures/*.png",
             lib_dir +"/Graph_lib/Graph.cpp",
             lib_dir +"/Graph_lib/GUI.cpp",
             lib_dir +"/Graph_lib/Window.cpp",
+            lib_dir +"/Graph_lib/Regular_hexagon.cpp",
             "board.cpp",
             "board.h",
             "cell.cpp",
