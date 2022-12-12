@@ -31,6 +31,9 @@ private:
     }
 
     void clicked(Cell &c);
+private:
+    Cell* active_cell = nullptr;
+    std::vector<bool> dell_cell = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 };
 
 

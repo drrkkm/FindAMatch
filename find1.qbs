@@ -33,6 +33,7 @@ Project {
             cpp.defines: "WIN32"
             cpp.systemIncludePaths: lib_dir +"/fltk-1.3.8_win64/include"
             cpp.libraryPaths: lib_dir +"/fltk-1.3.8_win64/lib"
+            cpp.cxxFlags: "-fsanitize=leak"
             cpp.driverLinkerFlags: "-mwindows"
             cpp.staticLibraries: [
                 "fltk_images",

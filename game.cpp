@@ -5,32 +5,39 @@ using namespace Graph_lib;
 Game::Game(Point xy)
         : Window{Point(0, 0), 840, 639, "Find a pair cyberpunk"}, board{Point{0, 0}, cb_clicked} {
     size_range(Gameboard::lenghth, Gameboard::width, Gameboard::lenghth, Gameboard::width);
-    board.attach(*this);
-}
-//void Game::clicked(Cell& c)
-//{
-//    std::cerr<<"ccc";
-//    if (board.has_selected()) {
-//        Cell &selected_cell = board.get_selected();
-//        if (board.get_selected().type != c.type) {
-//            std::cerr<<"ccc1";
-//            selected_cell.deactivate(*this, selected_cell.center());
-//            c.deactivate(*this, c.center());
-//        }
-//        if (board.get_selected().type == c.type) {
-//            c.is_deleted = false;
-//            selected_cell.is_deleted = false;
-//        // something
-//        }
-//    }
-//    Fl::redraw();
 
-//}
+    board.attach_game(*this, true);
+    board.attach(*this);
+    if (std::all_of(dell_cell.begin(), dell_cell.end(), [](bool v) { return v; })){
+        board.attach_game(*this, false);
+    }
+}
 
 
 void Game::clicked(Cell& c)
-{
-    std::cerr<<"ccc ";
-    c.activate(*this);
+try{
+    (active_cell != nullptr)? c.activate(*this, true): c.activate(*this, false) ;
+    cerr << c.type << " ";
+    if (active_cell != nullptr) {
+        cerr << active_cell->type << " ";
+        if (active_cell->type != c.type) {
+            if (dell_cell[c.type] != true){c.deactivate(*this, c.center());}
+            if (dell_cell[active_cell->type] != true){active_cell->deactivate(*this, active_cell->center());}
+            active_cell = nullptr;
+        }
+        else if ((active_cell->type == c.type && active_cell != &c) && !(active_cell->is_deleted && c.is_deleted)) {
+            active_cell->is_deleted = false;
+            c.is_deleted = false;
+            dell_cell[c.type] = true;
+            active_cell = nullptr;
+        }
+    }
+    else
+        active_cell = &c;
     Fl::redraw();
+
 }
+catch (std::exception& e){
+    cerr<< e.what();
+}
+

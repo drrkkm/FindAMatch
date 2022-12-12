@@ -47,7 +47,6 @@ Gameboard::Gameboard(Point xy, Graph_lib::Callback cb_clicked)
             t2.y += 60*sqrt(3);
         }
     }
-    cout << pictures_number;
 }
 
 void Gameboard::attach (Graph_lib::Window& win)
@@ -55,6 +54,22 @@ void Gameboard::attach (Graph_lib::Window& win)
     for (int i = 0; i < cells.size(); ++i)
         win.attach(cells[i]);
 
+    own = &win;
+}
+
+void Gameboard::attach_game (Graph_lib::Window& win, bool t)
+{   if (t){
+        auto *rect = new Graph_lib::Rectangle(Point(0, 0), 1200, 700);
+        rect->set_fill_color(33);
+        auto *move_counter = new Image{Point(0, 0), "./pictures/move_counter.png", Suffix::png};
+        win.attach(*rect);
+        win.attach(*move_counter);
+    }
+    else{
+        auto *x = new Text ( Point (200 , 200) ,"YOU WIN") ;
+        x->set_color (Color::blue);
+        win.attach(*x);
+    }
     own = &win;
 }
 

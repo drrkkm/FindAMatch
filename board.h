@@ -26,6 +26,7 @@ struct Gameboard : Graph_lib::Widget
     void draw_pole(Graph_lib::Window& win);
 
     bool check_pair_cells();
+    void attach_game (Graph_lib::Window& win, bool t);
 
     void attach (Graph_lib::Window& win) override;
     bool has_selected () const {return selected != nullptr;}
