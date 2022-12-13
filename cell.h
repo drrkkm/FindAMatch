@@ -4,6 +4,7 @@
 #include <Graph_lib/GUI.h>
 #include <Graph_lib/Regular_hexagon.h>
 #include <string>
+#include <iostream>
 #include "pictures.h"
 
 
