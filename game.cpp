@@ -16,9 +16,12 @@ Game::Game(Point xy)
 
 void Game::clicked(Cell& c)
 try{
-    (active_cell != nullptr)? c.activate(*this, true): c.activate(*this, false) ;
+    if (active_cell != &c)
+    {
+        (active_cell != nullptr)? c.activate(*this): c.activate(*this) ;
+    }
     cerr << c.type << " ";
-    if (active_cell != nullptr) {
+    if (active_cell != nullptr && active_cell != &c) {
         cerr << active_cell->type << " ";
         if (active_cell->type != c.type) {
             if (dell_cell[c.type] != true){c.deactivate(*this, c.center());}

@@ -22,21 +22,18 @@ void Cell::attach (Graph_lib::Window& win)
     DEBUG_OUT(&win);
     DEBUG_OUT(this);
 }
-//template <typename T>
-//unique_ptr<T> Cell::update(Point xy, bool t)
 
-void Cell::activate (Graph_lib::Window &win, bool fl)
+void Cell::activate (Graph_lib::Window &win)
 {
     if (is_deleted) throw std::runtime_error("Cell was delete");
     try{
-        //auto *i = new Image(Point{center().x - 38, center().y - 38}, image, Suffix::png);
-        //cerr<<pic_im;
-        if (fl){
-            pic_im = update(Point{center().x - 38, center().y - 38});
+        Point t = Point{center().x - 38, center().y - 38};
+        if (!pic_im){
+            pic_im = new Image{t, image, Suffix::png};
             win.attach(*pic_im);
         }
         else{
-            pic_im1 = update(Point{center().x - 38, center().y - 38});
+            pic_im1 = new Image{t, image, Suffix::png};
             win.attach(*pic_im1);
         }
 
@@ -49,13 +46,18 @@ void Cell::activate (Graph_lib::Window &win, bool fl)
 
 void Cell::deactivate (Graph_lib::Window &win, Point xy)
 {
-    cerr << "[kl;'";
     if (!pw) throw std::runtime_error("Cell is not attached to a window");
-    hex_im1 = update1(xy);
-    //auto *i = new Graph_lib::Regular_hexagon(xy, 60);
-    hex_im1->set_fill_color(35);
-    hex_im1->set_color(224);
-    win.attach(*hex_im1);
+    if (pic_im != nullptr)
+    {
+        win.detach(*pic_im);
+        delete pic_im;
+        pic_im = nullptr;
+    }
+    if (pic_im1 != nullptr)
+    {
+        win.detach(*pic_im1);
+        delete pic_im1;
+        pic_im1 = nullptr;}
 }
 
 void Cell::reset_color ()
