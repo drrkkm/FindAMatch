@@ -5,7 +5,6 @@
 #include <Graph_lib/Regular_hexagon.h>
 #include <string>
 #include "pictures.h"
-#include "utils.h"
 
 
 struct Cell : Graph_lib::Button
