@@ -65,6 +65,7 @@ void Gameboard::attach_game (Graph_lib::Window& win, bool t)
     else
     {
         auto *x = new Graph_lib::Text (Graph_lib::Point (200 , 200) ,"YOU WIN") ;
+        x->set_font_size(100);
         x->set_color (Graph_lib::Color::blue);
         win.attach(*x);
     }

@@ -17,6 +17,8 @@ struct Gameboard : Graph_lib::Widget
     static constexpr int lenghth = 840;
     static constexpr int width = 639;
 
+    int counter_of_closed_cells = count_cells;
+
     Gameboard (Graph_lib::Point xy, Graph_lib::Callback cb_clicked);
     ~Gameboard() 
     {
