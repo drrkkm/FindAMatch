@@ -5,40 +5,42 @@
 #include <Graph_lib/Regular_hexagon.h>
 #include <string>
 #include "pictures.h"
-#include <stdexcept>
 #include "utils.h"
-#include <utility>
-#include<memory>
-#include <cmath>
 
 
-using Graph_lib::Point;
-using namespace Graph_lib;
 struct Cell : Graph_lib::Button
 {
-
     static constexpr int size = 70;
-    int type;
-    string image;
     bool is_deleted = false;
+    bool opened = false;
+    int type;
+    std::string image;
 
-    Cell (Point xy, Graph_lib::Callback cb, int t);
+    Cell (Graph_lib::Point xy, Graph_lib::Callback cb, int t);
+    
+    ~Cell() 
+    {   
+        delete hex;
+        delete pic_im1;
+        delete pic_im;
+    };
+
+    Graph_lib::Point center() const {return Graph_lib::Point{loc.x + width / 2, loc.y + height / 2};}
 
     void attach (Graph_lib::Window& win) override;
 
-    Point center() const {return Point{loc.x + width / 2, loc.y + height / 2};}
-
     void activate(Graph_lib::Window &win);
 
-    void deactivate(Graph_lib::Window &win, Point xy);
+    void deactivate(Graph_lib::Window &win, Graph_lib::Point xy);
 
     void reset_color ();
 
 private:
-   Image* pic_im = nullptr;
-   Image* pic_im1 = nullptr;
-   bool opened = false;
-   Graph_lib::Regular_hexagon* hex {nullptr};
+
+    Graph_lib::Image* pic_im = nullptr;
+    Graph_lib::Image* pic_im1 = nullptr;
+    Graph_lib::Regular_hexagon* hex {nullptr};
+
 };
 
 #endif // #ifndef CELL_H

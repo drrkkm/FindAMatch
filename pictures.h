@@ -1,16 +1,12 @@
 #ifndef PICTURES_H
 #define PICTURES_H
-#include <Graph_lib/GUI.h>
-#include <string>
 
+#include <string>
 #include <vector>
-using namespace std;
-using Graph_lib::Image;
 
 struct picture
 {
-   std::string adress;
-   vector<string> pictures1 = {"./pictures/AMOGUSS.png",
+   std::vector<std::string> pictures1 = {"./pictures/AMOGUSS.png",
                               "./pictures/ANONYMUSS.png",
                               "./pictures/BABY_EATS_CAMERA.png",
                               "./pictures/BLUE_LOBSTER.png",

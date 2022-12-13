@@ -1,16 +1,13 @@
 #include "game.h"
 
-using namespace Graph_lib;
 
-Game::Game(Point xy)
-        : Window{Point(0, 0), 840, 639, "Find a pair cyberpunk"}, board{Point{0, 0}, cb_clicked} {
+Game::Game(Graph_lib::Point xy)
+        : Window{Graph_lib::Point(0, 0), 840, 639, "Find a pair cyberpunk"}, board{Graph_lib::Point{0, 0}, cb_clicked} {
     size_range(Gameboard::lenghth, Gameboard::width, Gameboard::lenghth, Gameboard::width);
 
     board.attach_game(*this, true);
     board.attach(*this);
-    if (std::all_of(dell_cell.begin(), dell_cell.end(), [](bool v) { return v; })){
-        board.attach_game(*this, false);
-    }
+    if (std::all_of(dell_cell.begin(), dell_cell.end(), [](bool v) { return v; })) board.attach_game(*this, false);
 }
 
 
@@ -20,9 +17,7 @@ try{
     {
         (active_cell != nullptr)? c.activate(*this): c.activate(*this) ;
     }
-    cerr << c.type << " ";
     if (active_cell != nullptr && active_cell != &c) {
-        cerr << active_cell->type << " ";
         if (active_cell->type != c.type) {
             if (dell_cell[c.type] != true){c.deactivate(*this, c.center());}
             if (dell_cell[active_cell->type] != true){active_cell->deactivate(*this, active_cell->center());}
@@ -41,6 +36,6 @@ try{
 
 }
 catch (std::exception& e){
-    cerr<< e.what();
+    std::cerr<< e.what();
 }
 
